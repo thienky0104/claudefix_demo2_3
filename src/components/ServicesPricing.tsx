@@ -275,7 +275,7 @@ export default function ServicesPricing() {
             className="mt-7 max-w-[500px] text-[14px] leading-[1.8] text-[#75656A] md:text-[15px]"
             style={{ fontFamily: "'Inter', sans-serif" }}
           >
-            Bảng giá cắt, uốn, nhuộm, duỗi và phục hồi tóc tại salon tóc nữ Triệu Tóc Đẹp, Lái Thiêu, Thuận An. Mỗi dịch vụ được thực hiện tỉ mỉ với mức giá hợp lý, phù hợp cho cả khách hàng mới và khách quen.
+            Mỗi dịch vụ được thực hiện tỉ mỉ với mức giá hợp lý, phù hợp cho cả khách hàng mới và khách quen.
           </p>
         </div>
 
