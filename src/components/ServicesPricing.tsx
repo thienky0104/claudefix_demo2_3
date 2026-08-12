@@ -1,0 +1,342 @@
+import { ArrowUp } from 'lucide-react';
+
+type Service = {
+  name: string;
+  price: string;
+};
+
+type ServiceGroup = {
+  title: string;
+  services: Service[];
+};
+
+type ServiceCategory = {
+  id: string;
+  number: string;
+  title: string;
+  image: string;
+  alt: string;
+  women: ServiceGroup[];
+  men: ServiceGroup[];
+};
+
+const SERVICE_CATEGORIES: ServiceCategory[] = [
+  {
+    id: 'cat-tao-kieu',
+    number: '01',
+    title: 'CẮT & TẠO KIỂU',
+    image:
+      'https://res.cloudinary.com/kx53fq3l/image/upload/f_auto,q_auto:eco,dpr_auto,w_600/v1786445442/0805_5.jpg',
+    alt: 'Cắt và tạo kiểu tóc tại Triệu Tóc Đẹp',
+    women: [
+      {
+        title: 'Cắt · Gội · Tạo Kiểu · Mask',
+        services: [
+          { name: 'Cắt', price: '100.000đ' },
+          { name: 'Cắt mái', price: '20.000đ' },
+          { name: 'Kẹp', price: '40.000đ' },
+          { name: 'Gội (Lạnh / Nóng)', price: '90.000đ - 120.000đ' },
+          { name: 'Gội đầu cao cấp', price: '150.000đ' },
+          { name: 'Gội thảo dược', price: '120.000đ' },
+          { name: 'Đắp mặt nạ', price: '50.000đ' },
+        ],
+      },
+    ],
+    men: [
+      {
+        title: 'Cắt Tóc Nam · Tạo Kiểu',
+        services: [
+          { name: 'Cắt', price: '80.000đ' },
+          { name: 'Hair Tattoo', price: '80.000đ' },
+        ],
+      },
+      {
+        title: 'Combo',
+        services: [
+          { name: 'Cắt - Xả - Cạo mặt', price: '100.000đ' },
+          { name: 'Cắt - Gội - Cạo mặt', price: '200.000đ' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'uon-duoi',
+    number: '02',
+    title: 'UỐN & DUỖI',
+    image:
+      'https://res.cloudinary.com/kx53fq3l/image/upload/f_auto,q_auto:eco,dpr_auto,w_600/v1786445443/94619370_242448817109689_6951844033924694016_n.jpg',
+    alt: 'Uốn và duỗi tóc tại Triệu Tóc Đẹp',
+    women: [
+      {
+        title: 'Uốn · Duỗi',
+        services: [
+          { name: 'Uốn (Tóc ngắn - dài)', price: '850.000đ - 900.000đ' },
+          { name: 'Uốn phục hồi', price: '1.200.000đ' },
+          { name: 'Duỗi (Tóc ngắn - dài)', price: '850.000đ - 900.000đ' },
+          { name: 'Duỗi phục hồi', price: '1.200.000đ' },
+        ],
+      },
+    ],
+    men: [
+      {
+        title: 'Uốn Tóc Nam',
+        services: [
+          { name: 'Uốn', price: '280.000đ' },
+          { name: 'Uốn Wavy', price: '280.000đ' },
+          { name: 'Uốn Ruffled', price: '350.000đ' },
+          { name: 'Uốn Con Sâu', price: '350.000đ' },
+          { name: 'Uốn Premlock', price: '500.000đ' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'nhuom-mau',
+    number: '03',
+    title: 'NHUỘM & MÀU',
+    image:
+      'https://res.cloudinary.com/kx53fq3l/image/upload/f_auto,q_auto:eco,dpr_auto,w_600/v1786445443/0805_4.jpg',
+    alt: 'Nhuộm và tạo màu tóc tại Triệu Tóc Đẹp',
+    women: [
+      {
+        title: 'Nhuộm · Tẩy · Highlight · Balayage',
+        services: [
+          { name: 'Nhuộm chân tóc (Tối đa 3cm)', price: '400.000đ' },
+          { name: 'Nhuộm (Tóc ngắn - dài)', price: '850.000đ - 900.000đ' },
+          { name: 'Nhuộm phục hồi', price: '1.200.000đ' },
+          { name: 'Nhuộm màu tẩy', price: '1.500.000đ - 1.800.000đ' },
+          { name: 'Nhuộm Highlight', price: '200.000đ - 700.000đ' },
+          { name: 'Nhuộm Balayage', price: '2.500.000đ' },
+        ],
+      },
+    ],
+    men: [
+      {
+        title: 'Nhuộm · Tẩy · Highlight · Balayage',
+        services: [
+          { name: 'Nhuộm', price: '400.000đ' },
+          { name: 'Nhuộm màu thời trang', price: '700.000đ' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'cham-soc-phuc-hoi',
+    number: '04',
+    title: 'CHĂM SÓC & PHỤC HỒI',
+    image:
+      'https://res.cloudinary.com/kx53fq3l/image/upload/f_auto,q_auto:eco,dpr_auto,w_600/v1786445442/484978316_1808479776602735_1117950820531129718_n_1.jpg',
+    alt: 'Chăm sóc và phục hồi tóc tại Triệu Tóc Đẹp',
+    women: [
+      {
+        title: 'Các Dịch Vụ Hóa Chất Khác',
+        services: [
+          { name: 'Bấm tóc', price: '250.000đ' },
+          { name: 'Tạo phồng chân tóc', price: '200.000đ' },
+          { name: 'Bấm + Tạo phồng chân tóc', price: '300.000đ' },
+        ],
+      },
+      {
+        title: 'Phục Hồi',
+        services: [
+          { name: 'Hấp dầu (Tóc ngắn - dài)', price: '280.000đ - 300.000đ' },
+          { name: 'Tái tạo (Tóc ngắn - dài)', price: '650.000đ - 700.000đ' },
+        ],
+      },
+      {
+        title: 'Trang Điểm',
+        services: [
+          { name: 'Trang điểm', price: '200.000đ' },
+          { name: 'Trang điểm + Tạo mẫu tóc', price: '250.000đ' },
+        ],
+      },
+    ],
+    men: [],
+  },
+];
+
+function ServiceList({ groups }: { groups: ServiceGroup[] }) {
+  return (
+    <div className="flex flex-col gap-8">
+      {groups.map((group) => (
+        <div key={group.title}>
+          <h4
+            className="mb-4 text-[10px] uppercase tracking-[0.24em] text-[#75656A]"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+          >
+            {group.title}
+          </h4>
+          <div className="divide-y divide-[#34282D]/10">
+            {group.services.map((service) => (
+              <div key={service.name} className="flex items-baseline gap-3 py-3 first:pt-0">
+                <span
+                  className="min-w-0 text-[15px] leading-[1.55] text-[#34282D] md:text-[16px]"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                >
+                  {service.name}
+                </span>
+                <span
+                  className="h-px flex-1 translate-y-[-3px] border-b border-dotted border-[#34282D]/20"
+                  aria-hidden="true"
+                />
+                <span
+                  className="shrink-0 text-right text-[12px] font-medium text-[#34282D] md:text-[13px]"
+                  style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                >
+                  {service.price}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AudienceMenu({ label, groups }: { label: string; groups: ServiceGroup[] }) {
+  if (groups.length === 0) return null;
+
+  return (
+    <div className="rounded-[2px] border border-[#34282D]/10 bg-white/55 p-6 md:p-8">
+      <h3
+        className="mb-7 text-[24px] tracking-[-0.03em] text-[#34282D] md:text-[28px]"
+        style={{ fontFamily: "'Newsreader', serif", fontWeight: 500 }}
+      >
+        {label}
+      </h3>
+      <ServiceList groups={groups} />
+    </div>
+  );
+}
+
+function CategoryMenu({ category }: { category: ServiceCategory }) {
+  return (
+    <article id={category.id} className="scroll-mt-28 border-t border-[#34282D]/15 pt-12 md:pt-16">
+      <div className="mb-8 flex items-end justify-between gap-6 md:mb-10">
+        <div>
+          <span
+            className="text-[10px] tracking-[0.28em] text-[#75656A]"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+          >
+            {category.number}
+          </span>
+          <h3
+            className="mt-3 text-[32px] leading-none tracking-[-0.045em] text-[#34282D] md:text-[48px]"
+            style={{ fontFamily: "'Newsreader', serif", fontWeight: 400 }}
+          >
+            {category.title}
+          </h3>
+        </div>
+        <a
+          href="#services-pricing"
+          className="hidden text-[10px] uppercase tracking-[0.2em] text-[#75656A] transition-colors hover:text-[#34282D] md:block"
+          style={{ fontFamily: "'JetBrains Mono', monospace" }}
+        >
+          Về đầu trang
+        </a>
+        <a
+          href="#services-pricing"
+          aria-label="Quay lại dịch vụ"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-[#34282D]/15 text-[#34282D] transition-colors hover:border-[#B98588] hover:text-[#B98588] md:hidden"
+        >
+          <ArrowUp className="h-5 w-5" />
+        </a>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2 md:gap-6">
+        <AudienceMenu label="NỮ" groups={category.women} />
+        <AudienceMenu label="NAM" groups={category.men} />
+      </div>
+    </article>
+  );
+}
+
+export default function ServicesPricing() {
+  return (
+    <section id="services-pricing" aria-label="Services and pricing" className="bg-[#F8F5F0] py-20 md:py-28">
+      <div className="container mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="max-w-[620px]">
+          <span
+            className="text-[10px] uppercase tracking-[0.38em] text-[#75656A]"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+          >
+            Bảng Giá · Full Menu
+          </span>
+          <h2
+            className="mt-5 text-[clamp(1.75rem,3.5vw,3.5rem)] font-semibold leading-[0.98] tracking-[-0.055em] text-[#34282D]"
+          >
+            <span className="block">Dịch Vụ &amp; Bảng Giá</span>
+            <span className="mt-2 block font-display font-normal italic tracking-[-0.045em] text-[#75656A]">
+              Chi tiết
+            </span>
+          </h2>
+          <p
+            className="mt-7 max-w-[500px] text-[14px] leading-[1.8] text-[#75656A] md:text-[15px]"
+            style={{ fontFamily: "'Inter', sans-serif" }}
+          >
+            Bảng giá cắt, uốn, nhuộm, duỗi và phục hồi tóc tại salon tóc nữ Triệu Tóc Đẹp, Lái Thiêu, Thuận An. Mỗi dịch vụ được thực hiện tỉ mỉ với mức giá hợp lý, phù hợp cho cả khách hàng mới và khách quen.
+          </p>
+        </div>
+
+        <nav aria-label="Danh mục dịch vụ" className="mt-14 grid grid-cols-2 gap-3 md:mt-20 md:grid-cols-4 md:gap-4">
+          {SERVICE_CATEGORIES.map((category) => (
+            <a
+              key={category.id}
+              href={`#${category.id}`}
+              className="group relative block aspect-[3/4] overflow-hidden bg-[#34282D] text-white"
+            >
+              <img
+                src={category.image}
+                alt={category.alt}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent transition-colors duration-500 group-hover:from-black/85" />
+              <div className="absolute inset-x-4 bottom-4 md:inset-x-6 md:bottom-6">
+                <span
+                  className="text-[10px] tracking-[0.2em] text-white/70"
+                  style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                >
+                  {category.number}
+                </span>
+                <h3
+                  className="mt-2 max-w-[180px] text-[22px] leading-[0.95] tracking-[-0.035em] text-white md:text-[30px]"
+                  style={{ fontFamily: "'Newsreader', serif", fontWeight: 400 }}
+                >
+                  {category.title}
+                </h3>
+                <span
+                  className="mt-4 block text-[9px] uppercase tracking-[0.22em] text-white/65"
+                  style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                >
+                  Xem chi tiết →
+                </span>
+              </div>
+            </a>
+          ))}
+        </nav>
+
+        <nav aria-label="Đi đến danh mục giá" className="mt-10 flex gap-x-6 gap-y-3 overflow-x-auto border-y border-[#34282D]/10 py-5 md:mt-14 md:justify-center">
+          {SERVICE_CATEGORIES.map((category) => (
+            <a
+              key={category.id}
+              href={`#${category.id}`}
+              className="shrink-0 text-[10px] uppercase tracking-[0.15em] text-[#75656A] transition-colors hover:text-[#34282D]"
+              style={{ fontFamily: "'JetBrains Mono', monospace" }}
+            >
+              {category.number} · {category.title}
+            </a>
+          ))}
+        </nav>
+
+        <div className="mt-16 flex flex-col gap-16 md:mt-24 md:gap-24">
+          {SERVICE_CATEGORIES.map((category) => (
+            <CategoryMenu key={category.id} category={category} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
